@@ -67,12 +67,11 @@ async def get_ais_targets(latitude: float, longitude: float, radius: float, star
         longitude: Longitude of the location
         radius: Radius in nautical miles (maximum is 10)
     """
-    # First get the forecast grid endpoint
     url = f"{API_BASE}/vessels/?format=json&latitude={latitude}&longitude={longitude}&radius_nm={radius}"
     ais_data = await make_ais_request(url)
 
     if not ais_data:
-        return "Unable to fetch forecast data for this location."
+        return "Unable to retrieve AIS targets for this position."
 
     if ais_data:
         response = f"Found {len(ais_data)} vessels in the area:\n"
